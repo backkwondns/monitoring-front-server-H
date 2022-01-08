@@ -1,16 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { DashBoardContainer, Test } from './pages';
+import { Provider } from 'mobx-react';
+import { Test, AppLayout, DashBoardContainer } from './pages';
+import RootStore from './stores/root.store';
 
 function App(): JSX.Element {
+  const rootStore = new RootStore();
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<DashBoardContainer />}>
-          <Route path="monitor" element={<DashBoardContainer />} />
-          <Route path="test" element={<Test />} />
-        </Route>
-      </Routes>
+      <Provider {...rootStore}>
+        <Routes>
+          <Route path="/" element={<AppLayout />}>
+            <Route path="test" element={<Test />} />
+          </Route>
+          <Route path="dash" element={<DashBoardContainer />} />
+        </Routes>
+      </Provider>
     </BrowserRouter>
   );
 }

@@ -3,14 +3,22 @@ import { ListH, ListItemButtonH, ListItemTextH } from 'src/atoms';
 import { organismsInterface } from 'src/interfaces';
 
 function ListButtonH(props: organismsInterface.listButtonInterface): JSX.Element {
-  const { listItems, divider = true } = props;
+  const { sxList, listItems, divider = true } = props;
   return (
-    <ListH>
+    <ListH sx={{ ...sxList }}>
       {listItems.map((item) => {
+        const { onClick, sxButton, icon, text, sxText } = item;
+        if (icon) {
+          return (
+            <ListItemButtonH key={text} onClick={onClick} sx={{ ...sxButton }} divider={divider}>
+              {icon}
+              <ListItemTextH text={text} sx={{ p: 1, ...sxText }} />
+            </ListItemButtonH>
+          );
+        }
         return (
-          <ListItemButtonH onClick={item.onClick} sx={{ ...item.sxButton }} divider={divider}>
-            {item.icon}
-            <ListItemTextH text={item.text} sx={{ p: 1, ...item.sxText }} />
+          <ListItemButtonH key={text} onClick={onClick} sx={{ ...sxButton }} divider={divider}>
+            <ListItemTextH text={text} sx={{ p: 1, ...sxText }} />
           </ListItemButtonH>
         );
       })}

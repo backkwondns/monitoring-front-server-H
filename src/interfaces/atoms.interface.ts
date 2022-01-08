@@ -15,15 +15,21 @@ import { OverridableStringUnion } from '@mui/types';
 import { InputBaseProps } from '@mui/material/InputBase';
 import { InputProps as StandardInputProps } from '@mui/material/Input/Input';
 import { TextFieldPropsColorOverrides, TextFieldPropsSizeOverrides } from '@mui/material/TextField/TextField';
+import { ListClasses } from '@mui/material/List/listClasses';
 
-export interface childrenInterface {
+export interface listInterface {
   children?: JSX.Element[] | JSX.Element;
+  classes?: Partial<ListClasses>;
+  dense?: boolean;
+  disablePadding?: boolean;
+  subheader?: React.ReactNode;
+  sx?: SxProps<Theme>;
 }
 
 export interface listItemButtonInterface {
   alignItems?: 'flex-start' | 'center';
   autoFocus?: boolean;
-  children?: React.ReactNode;
+  children?: JSX.Element[] | JSX.Element;
   classes?: Partial<ListItemButtonClasses>;
   dense?: boolean;
   disabled?: boolean;
@@ -39,13 +45,13 @@ export interface listItemTextInterface extends ListItemTextProps {
 }
 
 export interface buttonInterface extends ButtonProps {
-  text: string;
+  content: string | JSX.Element;
 }
 
 export interface inputTextInterface {
   autoComplete?: string;
   autoFocus?: boolean;
-  children?: React.ReactNode;
+  children?: JSX.Element[] | JSX.Element;
   classes?: Partial<TextFieldClasses>;
   color?: OverridableStringUnion<
     'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
