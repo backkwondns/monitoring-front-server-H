@@ -19,7 +19,7 @@ function Test(): JSX.Element {
     },
   ];
   return (
-    <>
+    <Box sx={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%', alignContent: 'center' }}>
       <ListButtonH listItems={listItems} divider />
       <Divider />
       <Box sx={{ width: '50%', height: '300px', border: '1px gray solid', p: 1 }}>
@@ -27,12 +27,12 @@ function Test(): JSX.Element {
         <LineChartH data={data} dataKey="a" />
       </Box>
       <Divider />
-      <ButtonH variant="outlined" color="success" text="hello!" />
+      <ButtonH variant="outlined" color="success" content="hello!" />
       <Divider />
       <InputTextH variant="standard" color="warning" />
       <Divider />
       <PrintH variant="h3" text="heeeeeeeeello" />
-    </>
+    </Box>
   );
 }
 
