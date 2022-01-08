@@ -1,0 +1,4 @@
+GET http://fkdnsem.iptime.org:34000/monitor/last
+Accept: application/json
+
+###
