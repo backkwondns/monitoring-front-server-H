@@ -2,19 +2,20 @@ import React from 'react';
 import { Dashboard, Settings } from '@mui/icons-material';
 import AppSide from 'src/pages/appLayout/appSide/appSide';
 import { Box } from '@mui/material';
-import { Outlet } from 'react-router-dom';
 import { MobXProviderContext, observer } from 'mobx-react';
+import { useNavigate } from 'react-router-dom';
 
 function AppSideContainer(): JSX.Element {
   const rootStore = React.useContext(MobXProviderContext);
-  const openSide = rootStore.appSideStore.getOpen;
+  const openSide = rootStore.appLayoutStore.getOpen;
+  const navigate = useNavigate();
   const onClick = () => {
-    rootStore.appSideStore.toggleOpen();
+    rootStore.appLayoutStore.toggleOpen();
   };
   const listItems = [
     {
       text: 'DashBoard',
-      onClick: () => false,
+      onClick: () => navigate('/dash'),
       icon: <Dashboard />,
     },
     {
@@ -24,11 +25,8 @@ function AppSideContainer(): JSX.Element {
     },
   ];
   return (
-    <Box sx={{ display: 'flex', position: 'absolute', left: 0, top: 0 }}>
+    <Box sx={{ display: 'flex', height: '100%' }}>
       <AppSide listItems={listItems} openSide={openSide} onClose={onClick} />
-      <Box sx={{ overflow: 'auto', height: '100vh' }}>
-        <Outlet />
-      </Box>
     </Box>
   );
 }

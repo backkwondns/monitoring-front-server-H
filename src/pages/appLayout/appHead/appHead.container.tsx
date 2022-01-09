@@ -1,13 +1,14 @@
 import React from 'react';
 import AppHead from 'src/pages/appLayout/appHead/appHead';
-import { MobXProviderContext } from 'mobx-react';
+import { MobXProviderContext, observer } from 'mobx-react';
 
 function AppHeadContainer(): JSX.Element {
   const rootStore = React.useContext(MobXProviderContext);
+  const openSide = rootStore.appLayoutStore.getOpen;
   const onOpenSide = () => {
-    rootStore.appSideStore.toggleOpen();
+    rootStore.appLayoutStore.toggleOpen();
   };
-  return <AppHead onOpenSide={onOpenSide} />;
+  return <AppHead onOpenSide={onOpenSide} openSide={openSide} />;
 }
 
-export default AppHeadContainer;
+export default observer(AppHeadContainer);

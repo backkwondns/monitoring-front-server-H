@@ -1,9 +1,13 @@
 import AppLayoutStore from 'src/stores/appLayout.store';
+import DashBoardStore from 'src/stores/dashBoard.store';
 
 export default class RootStore {
-  appSideStore: AppLayoutStore;
+  appLayoutStore: AppLayoutStore;
+
+  dashBoardStore: DashBoardStore;
 
   constructor() {
-    this.appSideStore = new AppLayoutStore(this);
+    this.appLayoutStore = new AppLayoutStore(this);
+    this.dashBoardStore = new DashBoardStore(this);
   }
 }

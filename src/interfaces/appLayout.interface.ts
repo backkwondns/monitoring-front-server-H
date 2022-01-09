@@ -1,5 +1,6 @@
 export interface appHeadInterface {
   onOpenSide: () => void;
+  openSide: boolean;
 }
 export interface appSideInterface {
   listItems: {
