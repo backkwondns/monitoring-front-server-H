@@ -11,9 +11,11 @@ function App(): JSX.Element {
       <Provider {...rootStore}>
         <Routes>
           <Route path="/" element={<AppLayout />}>
+            <Route path="dash" element={<DashBoardContainer />} />
             <Route path="test" element={<Test />} />
+            <Route index element={<DashBoardContainer />} />
+            <Route path="*" element={<div>404 Not Found!</div>} />
           </Route>
-          <Route path="dash" element={<DashBoardContainer />} />
         </Routes>
       </Provider>
     </BrowserRouter>

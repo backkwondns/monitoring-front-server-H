@@ -4,7 +4,9 @@ import RootStore from './root.store';
 class AppLayoutStore {
   root: RootStore;
 
-  openSide = true;
+  isLoading = true;
+
+  openSide = false;
 
   constructor(root: RootStore) {
     makeAutoObservable(this);
@@ -17,6 +19,14 @@ class AppLayoutStore {
 
   get getOpen() {
     return this.openSide;
+  }
+
+  toggleLoading() {
+    this.isLoading = !this.isLoading;
+  }
+
+  get getLoading() {
+    return this.isLoading;
   }
 }
 
