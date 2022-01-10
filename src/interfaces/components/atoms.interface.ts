@@ -1,5 +1,7 @@
 import {
   ButtonProps,
+  CheckboxProps,
+  FormControlLabelProps,
   FormHelperTextProps,
   InputLabelProps,
   ListItemTextProps,
@@ -89,3 +91,6 @@ export interface inputTextInterface {
 export interface printInterface extends TypographyProps {
   text: string;
 }
+
+export type formControlInterface = FormControlLabelProps;
+export type checkBoxInterface = CheckboxProps;

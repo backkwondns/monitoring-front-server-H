@@ -28,6 +28,10 @@ class AppLayoutStore {
   get getLoading() {
     return this.isLoading;
   }
+
+  resetLoading() {
+    this.isLoading = true;
+  }
 }
 
 export default AppLayoutStore;

@@ -1,3 +1,5 @@
+import { selectedChart } from 'src/interfaces/pages/setting.interface';
+
 export type data = {
   CPU_Avg: string;
   CPU_Core0: string;
@@ -37,4 +39,5 @@ export interface dashBoardInterface {
   data: data;
   colorMap: colorMap;
   domainMap: domainMap;
+  selectedChart: selectedChart;
 }

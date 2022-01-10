@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { data } from './dashBoard.interface';
+import { data } from '../pages/dashBoard.interface';
 
 export interface listButtonInterface {
   sxList?: object;
@@ -20,4 +20,11 @@ export interface lineChartInterface {
   lineColor?: string;
   legend?: boolean;
   tooltip?: boolean;
+}
+
+export interface formCheckBoxInterface {
+  text: string;
+  checked: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  sxForm?: object;
 }

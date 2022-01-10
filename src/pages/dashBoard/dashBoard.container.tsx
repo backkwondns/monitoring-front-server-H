@@ -16,8 +16,10 @@ function DashBoardContainer(): JSX.Element {
     FAN: [0, 100],
     TEMP: [0, 100],
   };
+  const selectedChart = rootStore.settingStore.getSelectedChart;
 
   useEffect(() => {
+    rootStore.appLayoutStore.resetLoading();
     axiosGet({ url: 'http://fkdnsem.iptime.org:34000/monitor/multi' }).then((res) =>
       rootStore.dashBoardStore.setTotalInfo(res.data),
     );
@@ -28,7 +30,7 @@ function DashBoardContainer(): JSX.Element {
       <CircularProgress color="secondary" />
     </Box>
   ) : (
-    <DashBoard data={data} colorMap={colorMap} domainMap={domainMap} />
+    <DashBoard data={data} colorMap={colorMap} domainMap={domainMap} selectedChart={selectedChart} />
   );
 }
 
