@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Fade, Popper } from '@mui/material';
+import { Box, Popper } from '@mui/material';
 import { ButtonH } from 'src/atoms';
 import { FilterAlt, Dehaze } from '@mui/icons-material';
 import { appLayoutInterface } from 'src/interfaces';
@@ -10,7 +10,6 @@ function AppHead(props: appLayoutInterface.appHeadInterface): JSX.Element {
   const open = Boolean(openFilter);
   const id = open ? 'simple-popper' : undefined;
   const typeList = ['CPU', 'MEM', 'FAN', 'TEMP'];
-
   return (
     <Box
       sx={{
@@ -33,6 +32,7 @@ function AppHead(props: appLayoutInterface.appHeadInterface): JSX.Element {
           {typeList.map((type) => {
             return (
               <FormCheckBox
+                key={type}
                 text={type}
                 checked={allList[type].every((sensor: string) => selectedChart[sensor])}
                 indeterminate={allList[type].some(

@@ -21,7 +21,7 @@ function DashBoardContainer(): JSX.Element {
 
   useEffect(() => {
     rootStore.appLayoutStore.resetLoading();
-    axiosGet({ url: 'http://fkdnsem.iptime.org:34000/monitor/multi' }).then((res) =>
+    axiosGet({ url: `${rootStore.SERVER}:${rootStore.SERVER_PORT}/monitor/multi` }).then((res) =>
       rootStore.dashBoardStore.setTotalInfo(res.data),
     );
   }, []);

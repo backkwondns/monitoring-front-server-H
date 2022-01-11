@@ -12,7 +12,7 @@ function DashBoard(props: dashBoardInterface.dashBoardInterface): JSX.Element {
         const keySplit = key.split('_');
         const color = colorMap[`${keySplit[0]}`];
         const domain = domainMap[`${keySplit[0]}`];
-        if (key === 'timeStamp' || !selectedChart[key]) {
+        if (!selectedChart[key]) {
           return null;
         }
         return (
