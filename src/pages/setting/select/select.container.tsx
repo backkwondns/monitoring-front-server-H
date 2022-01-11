@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import { MobXProviderContext, observer } from 'mobx-react';
-import Setting from './setting';
+import Select from './select';
 
-function SettingContainer() {
+function SelectContainer() {
   const rootStore = useContext(MobXProviderContext);
   const selectedChart = rootStore.settingStore.getSelectedChart;
   const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -11,7 +11,7 @@ function SettingContainer() {
   };
 
   const allList = rootStore.settingStore.getAllList;
-  return <Setting allList={allList} selectedChart={selectedChart} onChange={onChange} />;
+  return <Select allList={allList} selectedChart={selectedChart} onChange={onChange} />;
 }
 
-export default observer(SettingContainer);
+export default observer(SelectContainer);

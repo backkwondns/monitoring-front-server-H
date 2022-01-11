@@ -29,6 +29,8 @@ class SettingStore {
     TEMP_Thermal: true,
   };
 
+  listChart: string[] = [];
+
   CPU: settingInterface.CPU = ['CPU_Avg', 'CPU_Core0', 'CPU_Core1', 'CPU_Core2', 'CPU_Core3'];
 
   MEM: settingInterface.MEM = [
@@ -51,6 +53,7 @@ class SettingStore {
     makeAutoObservable(this);
     this.root = root;
     this.dashboard = this.root.dashBoardStore;
+    this.listChart = Object.keys(this.selectedChart).filter((key) => this.selectedChart[key]);
   }
 
   get getSelectedChart() {
@@ -74,7 +77,11 @@ class SettingStore {
   }
 
   get getAllList() {
-    return this.allList;
+    return toJS(this.allList);
+  }
+
+  get getListChart() {
+    return toJS(this.listChart);
   }
 
   setSelectedChart(toggleTarget: string) {
@@ -84,8 +91,27 @@ class SettingStore {
       });
       this.allList[toggleTarget].forEach((key) => {
         this.selectedChart[key] = returnValue;
+        if (returnValue) {
+          this.listChart.push(key);
+        } else {
+          this.listChart.splice(this.listChart.indexOf(key), 1);
+        }
       });
-    } else this.selectedChart[toggleTarget] = !this.selectedChart[toggleTarget];
+    } else {
+      if (!this.selectedChart[toggleTarget]) {
+        this.listChart.push(toggleTarget);
+      } else {
+        this.listChart.splice(this.listChart.indexOf(toggleTarget), 1);
+      }
+      this.selectedChart[toggleTarget] = !this.selectedChart[toggleTarget];
+    }
+  }
+
+  setListChart(listChart: string[], startIndex: number, endIndex: number) {
+    const result = Array.from(listChart);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    this.listChart = result;
   }
 }
 

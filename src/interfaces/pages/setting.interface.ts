@@ -33,3 +33,8 @@ export interface settingInterface {
   selectedChart: selectedChart;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface listSettingInterface {
+  listChart: string[];
+  onDragEnd: (result: any) => void;
+}

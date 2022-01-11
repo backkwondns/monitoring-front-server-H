@@ -1,6 +1,6 @@
 import DashBoardContainer from 'src/pages/dashBoard/dashBoard.container';
 import AppLayout from 'src/pages/appLayout/appLayout';
-import SettingContainer from 'src/pages/setting/setting.container';
+import Setting from 'src/pages/setting/setting';
 import Test from './test';
 
-export { DashBoardContainer, AppLayout, SettingContainer, Test };
+export { DashBoardContainer, AppLayout, Setting, Test };

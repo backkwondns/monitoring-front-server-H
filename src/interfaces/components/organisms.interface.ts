@@ -25,6 +25,7 @@ export interface lineChartInterface {
 export interface formCheckBoxInterface {
   text: string;
   checked: boolean;
+  indeterminate?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   sxForm?: object;
 }

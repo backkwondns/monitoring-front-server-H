@@ -8,6 +8,8 @@ class AppLayoutStore {
 
   openSide = false;
 
+  openFilter = false;
+
   constructor(root: RootStore) {
     makeAutoObservable(this);
     this.root = root;
@@ -31,6 +33,14 @@ class AppLayoutStore {
 
   resetLoading() {
     this.isLoading = true;
+  }
+
+  get getFilterOpen() {
+    return this.openFilter;
+  }
+
+  setFilterOpen(clicked: any) {
+    this.openFilter = this.openFilter ? null : clicked;
   }
 }
 

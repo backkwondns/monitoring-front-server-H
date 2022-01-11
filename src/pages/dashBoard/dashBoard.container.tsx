@@ -17,6 +17,7 @@ function DashBoardContainer(): JSX.Element {
     TEMP: [0, 100],
   };
   const selectedChart = rootStore.settingStore.getSelectedChart;
+  const listChart = rootStore.settingStore.getListChart;
 
   useEffect(() => {
     rootStore.appLayoutStore.resetLoading();
@@ -30,7 +31,13 @@ function DashBoardContainer(): JSX.Element {
       <CircularProgress color="secondary" />
     </Box>
   ) : (
-    <DashBoard data={data} colorMap={colorMap} domainMap={domainMap} selectedChart={selectedChart} />
+    <DashBoard
+      data={data}
+      colorMap={colorMap}
+      domainMap={domainMap}
+      selectedChart={selectedChart}
+      listChart={listChart}
+    />
   );
 }
 
