@@ -9,9 +9,15 @@ export default class RootStore {
 
   settingStore: SettingStore;
 
+  SERVER: string | undefined;
+
+  SERVER_PORT: string | undefined;
+
   constructor() {
     this.appLayoutStore = new AppLayoutStore(this);
     this.dashBoardStore = new DashBoardStore(this);
     this.settingStore = new SettingStore(this);
+    this.SERVER = process.env.REACT_APP_SERVER;
+    this.SERVER_PORT = process.env.REACT_APP_SERVER_PORT;
   }
 }

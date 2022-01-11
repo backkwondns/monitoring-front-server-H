@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type selectedChart = {
   [key: string]: boolean;
   CPU_Avg: boolean;
@@ -37,4 +39,13 @@ export interface settingInterface {
 export interface listSettingInterface {
   listChart: string[];
   onDragEnd: (result: any) => void;
+}
+
+export interface fanControlInterface {
+  fanControl: string;
+  openFanConfig: any;
+  onMinus: () => void;
+  onPlus: () => void;
+  onFanConfig: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onChangeCommitted: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
 }

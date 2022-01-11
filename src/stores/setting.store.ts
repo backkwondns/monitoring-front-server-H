@@ -2,6 +2,7 @@ import { makeAutoObservable, toJS } from 'mobx';
 import DashBoardStore from 'src/stores/dashBoard.store';
 import RootStore from 'src/stores/root.store';
 import { settingInterface } from 'src/interfaces';
+import { axiosPost } from 'src/libs/axios';
 
 class SettingStore {
   root: RootStore;
@@ -49,11 +50,16 @@ class SettingStore {
 
   allList: settingInterface.allList = { CPU: this.CPU, MEM: this.MEM, FAN: this.FAN, TEMP: this.TEMP };
 
+  openFanConfig = false;
+
+  fanControl = '0';
+
   constructor(root: RootStore) {
     makeAutoObservable(this);
     this.root = root;
     this.dashboard = this.root.dashBoardStore;
     this.listChart = Object.keys(this.selectedChart).filter((key) => this.selectedChart[key]);
+    this.fanControl = this.dashboard.currentFan;
   }
 
   get getSelectedChart() {
@@ -112,6 +118,27 @@ class SettingStore {
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
     this.listChart = result;
+  }
+
+  get getOpenFanConfig() {
+    return this.openFanConfig;
+  }
+
+  setOpenFanConfig(clicked: any) {
+    this.openFanConfig = this.openFanConfig ? null : clicked;
+  }
+
+  get getFanControl() {
+    return toJS(this.fanControl);
+  }
+
+  setFanControl(value: string) {
+    console.log(`${this.root.SERVER}:${this.root.SERVER_PORT}/monitor/fan`);
+    this.fanControl = value;
+    axiosPost({
+      url: `${this.root.SERVER}:${this.root.SERVER_PORT}/monitor/fan`,
+      data: { value: (Number(value) * 2.5).toString() },
+    });
   }
 }
 
