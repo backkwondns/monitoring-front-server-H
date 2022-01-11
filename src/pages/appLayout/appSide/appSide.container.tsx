@@ -20,7 +20,7 @@ function AppSideContainer(): JSX.Element {
     },
     {
       text: 'Setting',
-      onClick: () => false,
+      onClick: () => navigate('/setting'),
       icon: <Settings />,
     },
   ];

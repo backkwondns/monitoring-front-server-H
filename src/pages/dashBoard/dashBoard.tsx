@@ -5,15 +5,14 @@ import { LineChartH } from 'src/organisms';
 import { PrintH } from 'src/atoms';
 
 function DashBoard(props: dashBoardInterface.dashBoardInterface): JSX.Element {
-  const { data, colorMap, domainMap } = props;
-  console.log(data);
+  const { data, colorMap, domainMap, selectedChart, listChart } = props;
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', height: '100%' }}>
-      {Object.keys(data[0]).map((key) => {
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      {listChart.map((key) => {
         const keySplit = key.split('_');
         const color = colorMap[`${keySplit[0]}`];
         const domain = domainMap[`${keySplit[0]}`];
-        if (key === 'timeStamp' || key === 'MEM_Total') {
+        if (key === 'timeStamp' || !selectedChart[key]) {
           return null;
         }
         return (

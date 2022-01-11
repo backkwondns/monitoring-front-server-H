@@ -1,8 +1,11 @@
 import {
   ButtonProps,
+  CheckboxProps,
+  FormControlLabelProps,
   FormHelperTextProps,
   InputLabelProps,
   ListItemTextProps,
+  ListProps,
   SelectProps,
   TypographyProps,
 } from '@mui/material';
@@ -17,7 +20,7 @@ import { InputProps as StandardInputProps } from '@mui/material/Input/Input';
 import { TextFieldPropsColorOverrides, TextFieldPropsSizeOverrides } from '@mui/material/TextField/TextField';
 import { ListClasses } from '@mui/material/List/listClasses';
 
-export interface listInterface {
+export interface listInterface extends ListProps {
   children?: JSX.Element[] | JSX.Element;
   classes?: Partial<ListClasses>;
   dense?: boolean;
@@ -89,3 +92,6 @@ export interface inputTextInterface {
 export interface printInterface extends TypographyProps {
   text: string;
 }
+
+export type formControlInterface = FormControlLabelProps;
+export type checkBoxInterface = CheckboxProps;
