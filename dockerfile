@@ -10,6 +10,7 @@ COPY package*.json ./
 COPY . .
 # Install npm production packages 
 RUN npm install 
+RUN npm install -g serve
 
 # set timezone
 RUN apk add tzdata
@@ -21,4 +22,4 @@ ENV PORT 3000
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build"]
