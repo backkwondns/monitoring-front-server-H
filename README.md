@@ -47,7 +47,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Docker build
 
-`docker build -t monitoring_front:1.0.0 . -f dockerfile`
+`sudo docker build -t monitoring_front:1.0.0 . -f dockerfile`
 
 ## Docker run
-`sudo docker run -dit --network back-server_monitoring_network -p 3000:3000 --ip 10.10.0.12 monitoring_front:1.0.0`
+`sudo docker run -dit --network back-server_monitoring-network -p 3000:3000 --ip 10.10.0.12 monitoring_front:1.0.0`
