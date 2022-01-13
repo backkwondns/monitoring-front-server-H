@@ -7,6 +7,7 @@ import {
   ListItemTextProps,
   ListProps,
   SelectProps,
+  TextFieldProps,
   TypographyProps,
 } from '@mui/material';
 import * as React from 'react';
@@ -51,43 +52,7 @@ export interface buttonInterface extends ButtonProps {
   content: string | JSX.Element;
 }
 
-export interface inputTextInterface {
-  autoComplete?: string;
-  autoFocus?: boolean;
-  children?: JSX.Element[] | JSX.Element;
-  classes?: Partial<TextFieldClasses>;
-  color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
-    TextFieldPropsColorOverrides
-  >;
-  defaultValue?: unknown;
-  disabled?: boolean;
-  error?: boolean;
-  FormHelperTextProps?: Partial<FormHelperTextProps>;
-  fullWidth?: boolean;
-  helperText?: React.ReactNode;
-  id?: string;
-  InputLabelProps?: Partial<InputLabelProps>;
-  inputProps?: InputBaseProps['inputProps'];
-  inputRef?: React.Ref<any>;
-  label?: React.ReactNode;
-  multiline?: boolean;
-  name?: string;
-  onBlur?: InputBaseProps['onBlur'];
-  onFocus?: StandardInputProps['onFocus'];
-  placeholder?: string;
-  required?: boolean;
-  rows?: string | number;
-  maxRows?: string | number;
-  minRows?: string | number;
-  select?: boolean;
-  SelectProps?: Partial<SelectProps>;
-  size?: OverridableStringUnion<'small' | 'medium', TextFieldPropsSizeOverrides>;
-  sx?: SxProps<Theme>;
-  type?: React.InputHTMLAttributes<unknown>['type'];
-  value?: unknown;
-  variant?: 'filled' | 'outlined' | 'standard';
-}
+export type inputTextInterface = TextFieldProps;
 
 export interface printInterface extends TypographyProps {
   text: string;

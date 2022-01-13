@@ -66,28 +66,52 @@ class SettingStore {
     return toJS(this.selectedChart);
   }
 
-  get getCPU() {
-    return this.CPU;
-  }
-
-  get getMEM() {
-    return this.MEM;
-  }
-
-  get getFAN() {
-    return this.FAN;
-  }
-
-  get getTEMP() {
-    return this.TEMP;
-  }
-
   get getAllList() {
     return toJS(this.allList);
   }
 
   get getListChart() {
     return toJS(this.listChart);
+  }
+
+  async setChartFromServer() {
+    const result = await axiosPost({
+      url: 'login/getSetting',
+      data: { id: this.root.appLayoutStore.getId },
+    });
+    Object.keys(result.data.selectedChart).forEach((key) => {
+      this.selectedChart[key] = Boolean(Number(result.data.selectedChart[key]));
+    });
+    this.listChart = result.data.listChart;
+  }
+
+  setSelectedServer(key: string, value: string) {
+    axiosPost({
+      url: 'login/updateSelected',
+      data: {
+        id: this.root.appLayoutStore.getId,
+        key,
+        value,
+      },
+    });
+  }
+
+  makeListServerFormat() {
+    const serverListFormat: string[] = [];
+
+    this.listChart.forEach((value, index) => serverListFormat.push(index.toString(), value));
+    Object.keys(this.selectedChart).forEach((key) => {
+      if (this.selectedChart[key] === false) {
+        serverListFormat.push('999', key);
+      }
+    });
+    axiosPost({
+      url: 'login/updateList',
+      data: {
+        id: this.root.appLayoutStore.getId,
+        list: serverListFormat,
+      },
+    });
   }
 
   setSelectedChart(toggleTarget: string) {
@@ -99,17 +123,23 @@ class SettingStore {
         this.selectedChart[key] = returnValue;
         if (returnValue) {
           this.listChart.push(key);
+          this.setSelectedServer(key, '1');
         } else {
           this.listChart.splice(this.listChart.indexOf(key), 1);
+          this.setSelectedServer(key, '0');
         }
       });
+      this.makeListServerFormat();
     } else {
       if (!this.selectedChart[toggleTarget]) {
         this.listChart.push(toggleTarget);
+        this.setSelectedServer(toggleTarget, '1');
       } else {
         this.listChart.splice(this.listChart.indexOf(toggleTarget), 1);
+        this.setSelectedServer(toggleTarget, '0');
       }
       this.selectedChart[toggleTarget] = !this.selectedChart[toggleTarget];
+      this.makeListServerFormat();
     }
   }
 
@@ -118,6 +148,7 @@ class SettingStore {
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
     this.listChart = result;
+    this.makeListServerFormat();
   }
 
   get getOpenFanConfig() {
@@ -133,10 +164,9 @@ class SettingStore {
   }
 
   setFanControl(value: string) {
-    console.log(`${this.root.SERVER}:${this.root.SERVER_PORT}/monitor/fan`);
     this.fanControl = value;
     axiosPost({
-      url: `${this.root.SERVER}:${this.root.SERVER_PORT}/monitor/fan`,
+      url: 'monitor/fan',
       data: { value: (Number(value) * 2.5).toString() },
     });
   }
