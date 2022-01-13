@@ -6,7 +6,7 @@ WORKDIR /workspace
 
 # Copy package.json and package-lock.json
 
-COPY .build .build
+COPY ./build ./build
 # Install npm production packages 
 RUN npm install -g serve
 
