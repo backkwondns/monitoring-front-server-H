@@ -18,12 +18,9 @@ function DashBoardContainer(): JSX.Element {
   };
   const selectedChart = rootStore.settingStore.getSelectedChart;
   const listChart = rootStore.settingStore.getListChart;
-
   useEffect(() => {
     rootStore.appLayoutStore.resetLoading();
-    axiosGet({ url: `${rootStore.SERVER}:${rootStore.SERVER_PORT}/monitor/multi` }).then((res) =>
-      rootStore.dashBoardStore.setTotalInfo(res.data),
-    );
+    axiosGet({ url: `monitor/multi` }).then((res) => rootStore.dashBoardStore.setTotalInfo(res.data));
   }, []);
 
   return isLoading ? (

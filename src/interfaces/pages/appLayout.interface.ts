@@ -5,9 +5,13 @@ export interface appHeadInterface {
   openSide: boolean;
   onFilter: (event: React.MouseEvent<HTMLButtonElement>) => void;
   openFilter: any;
+  openDialog: boolean;
+  onCloseLogin: () => void;
   allList: settingInterface.allList;
   selectedChart: settingInterface.selectedChart;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  formik: any;
+  isLogin: boolean;
 }
 export interface appSideInterface {
   listItems: {

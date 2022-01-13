@@ -1,5 +1,6 @@
 import AppLayoutStore from 'src/stores/appLayout.store';
 import DashBoardStore from 'src/stores/dashBoard.store';
+import { makeAutoObservable } from 'mobx';
 import SettingStore from './setting.store';
 
 export default class RootStore {

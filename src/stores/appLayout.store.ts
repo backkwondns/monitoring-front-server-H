@@ -10,6 +10,12 @@ class AppLayoutStore {
 
   openFilter = false;
 
+  openDialog = false;
+
+  login = false;
+
+  id = '';
+
   constructor(root: RootStore) {
     makeAutoObservable(this);
     this.root = root;
@@ -41,6 +47,30 @@ class AppLayoutStore {
 
   setFilterOpen(clicked: any) {
     this.openFilter = this.openFilter ? null : clicked;
+  }
+
+  get getOpenDialog() {
+    return this.openDialog;
+  }
+
+  toggleOpenDialog() {
+    this.openDialog = !this.openDialog;
+  }
+
+  get getLogin() {
+    return this.login;
+  }
+
+  toggleLogin() {
+    this.login = true;
+  }
+
+  get getId() {
+    return this.id;
+  }
+
+  setId(id: string) {
+    this.id = id;
   }
 }
 
