@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { libsInterface } from 'src/interfaces';
 
-const API = axios.create({ baseURL: `${process.env.REACT_APP_SERVER}:${process.env.REACT_APP_SERVER_PORT}/` });
+const API = axios.create({ baseURL: `/` });
 export const axiosGet = async (props: libsInterface.axiosInterface): Promise<AxiosResponse> => {
   const { url } = props;
   const axiosResult = await API.get(url)
