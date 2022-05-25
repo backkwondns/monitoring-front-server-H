@@ -21,6 +21,11 @@ function DashBoardContainer(): JSX.Element {
   useEffect(() => {
     rootStore.appLayoutStore.resetLoading();
     axiosGet({ url: `monitor/multi` }).then((res) => rootStore.dashBoardStore.setTotalInfo(res.data));
+		setInterval(() => {
+				axiosGet({ url: `monitor/multi` }).then((res) => {rootStore.dashBoardStore.setTotalInfo(res.data)
+				rootStore.appLayoutStore.toggleLoading()}
+);
+		},10000);
   }, []);
 
   return isLoading ? (
